@@ -1,0 +1,5 @@
+dataloader:
+  batch_size: 96
+  patch_size: !!python/tuple [100,100]
+  patches_per_well: 16
+  patch_selection_method: 'mid_std_dev'
