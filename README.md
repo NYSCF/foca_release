@@ -120,3 +120,12 @@ Provide various use cases and code examples here.
 ## More Help
 For more information on either training a model or deploying the tool, feel free to [open an issue](https://github.com/NYSCF/foca_release/issues).
 
+## Citation
+If you find this repository useful for your research, please consider giving us a star ⭐ and cite our [bioRxiv paper](https://www.biorxiv.org/content/10.1101/2023.07.20.549929v1):
+
+```
+FocA: A deep learning tool for reliable, near-real-time imaging focus analysis in automated cell assay pipelines
+Jeff Winchell, Gabriel Comolet, Geoff Buckley-Herd, Dillion Hutson, Neeloy Bose, Daniel Paull, Bianca Migliori 
+bioRxiv 2023.07.20.549929; doi: https://doi.org/10.1101/2023.07.20.549929
+```
+FocA<sup>SM</sup> &copy; 2023 by NYSCF is licensed under Business Source License 1.1.
