@@ -6,9 +6,9 @@
 <img src="https://github.com/NYSCF/FocA_release/blob/main/assets/figures/fig1_workflow.png"></img>
 The increasing use of automation in cellular assays and cell culture presents significant opportunities to enhance the scale and throughput of imaging assays, but to do so, reliable data quality and consistency are critical. Realizing the full potential of automation will thus require the design of robust analysis pipelines that span the entire workflow in question. Here we present FocA, a deep learning tool that, in near real-time, identifies in-focus and out-of-focus images generated on a fully automated cell biology research platform, the NYSCF Global Stem Cell Array®. The tool is trained on small patches of downsampled images to maximize computational efficiency without compromising accuracy, and optimized to make sure no sub-quality images are stored and used in downstream analyses. The tool automatically generates balanced and maximally diverse training sets to avoid bias. The resulting model correctly identifies 100% of out-of-focus and 98% of in-focus images in under 4 seconds per 96-well plate, and achieves this result even in heavily downsampled data (~30 times smaller than native resolution). Integrating the tool into automated workflows minimizes the need for human verification as well as the collection and usage of low-quality data. FocA thus offers a solution to ensure reliable image data hygiene and improve the efficiency of automated imaging workflows using minimal computational resources.
 
-Read the preprint [here](https://www.biorxiv.org/content/10.1101/2023.07.20.549929v1):
+Read the paper [here](https://doi.org/10.1016/j.slasd.2023.08.004):
 
-Winchell, J., Comolet, G., Buckley-Herd, G., Hutson, D., Bose, N., Paull, D., & Migliori, B. (2023). **FocA: A deep learning tool for reliable, near-real-time imaging focus analysis in automated cell assay pipelines**. Preprint.
+Winchell, J., Comolet, G., Buckley-Herd, G., Hutson, D., Bose, N., Paull, D., & Migliori, B. (2023). **FocA: A deep learning tool for reliable, near-real-time imaging focus analysis in automated cell assay pipelines**. SLAS Discovery.
 ## Table of Contents
 - [FocA: A deep learning tool for reliable, near-real-time imaging focus analysis in automated cell assay pipelines](#foca-a-deep-learning-tool-for-reliable-near-real-time-imaging-focus-analysis-in-automated-cell-assay-pipelines)
 		- [The New York Stem Cell Foundation](#the-new-york-stem-cell-foundation)
@@ -121,11 +121,11 @@ Provide various use cases and code examples here.
 For more information on either training a model or deploying the tool, feel free to [open an issue](https://github.com/NYSCF/foca_release/issues).
 
 ## Citation
-If you find this repository useful for your research, please consider giving us a star ⭐ and cite our [bioRxiv paper](https://www.biorxiv.org/content/10.1101/2023.07.20.549929v1):
+If you find this repository useful for your research, please consider giving us a star ⭐ and cite our [publication](https://doi.org/10.1016/j.slasd.2023.08.004):
 
 ```
 FocA: A deep learning tool for reliable, near-real-time imaging focus analysis in automated cell assay pipelines
 Jeff Winchell, Gabriel Comolet, Geoff Buckley-Herd, Dillion Hutson, Neeloy Bose, Daniel Paull, Bianca Migliori 
-bioRxiv 2023.07.20.549929; doi: https://doi.org/10.1101/2023.07.20.549929
+SLAS Discovery j.slasd.2023.08.004; doi: https://doi.org/10.1016/j.slasd.2023.08.004
 ```
 FocA<sup>SM</sup> &copy; 2023 by NYSCF is licensed under Business Source License 1.1.
