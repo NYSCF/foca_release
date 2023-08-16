@@ -337,9 +337,9 @@ def make_patch_df(well_df, wells_per_stage, min_patches, batch_size):
 	for i in range(num_stages):
 		stage_df = well_df[well_df['Stage']==i]
 
-		for j in range(len(classes)):
+		for j,_ in enumerate(classes):
 			class_stage_df = stage_df[stage_df['Class']==classes[j]]
-			for w in range(len(class_stage_df)):
+			for w,_ in enumerate(class_stage_df):
 				single_patch_df = pd.DataFrame(columns=patch_df.columns)
 
 				single_patch_df['Patch'] = np.arange(class_patch_dist[j])

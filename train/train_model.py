@@ -35,7 +35,7 @@ def main():
 						default="foca_weights",type=str)
 	parser.add_argument('-y','--yaml',
 		     			help='YAML file with config to use during training',
-						default='default.yaml',type=str)
+						default='default_training.yaml',type=str)
 	parser.add_argument('-d','--device',
 		     			help='Use CPU or GPU, valid inputs are [CPU, GPU]',
 						default='GPU',type=str)
@@ -61,6 +61,9 @@ def main():
 			if continue_training:
 				args['name'] = input("Enter a new model name: ")
 				model_path = os.path.join(WEIGHT_DIR,args['name'])
+				if not os.path.exists(model_path):
+					os.makedirs(model_path)
+
 			else:
 				return 0
 		
