@@ -10,12 +10,10 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 import math
 
-import pandas as pd
 import yaml
-from dataloader import TrainDataGenerator
-from tensorflow.python.keras.callbacks import Callback, LearningRateScheduler
+from tensorflow.python.keras.callbacks import LearningRateScheduler
 
-from input.config import CONFIG_DIR, DATASET_CSV_DIR, SCALE_DICT, WEIGHT_DIR
+from input.config import CONFIG_DIR, SCALE_DICT, WEIGHT_DIR
 from models.foca import FocA
 
 
@@ -26,7 +24,7 @@ def lr_time_decay(epoch,lr,decay=0.1):
 	
 	return lr * 1 / (1 + decay * epoch)
 
-def lr_exp_decay(epoch, lr,initial_learning_rate=0.005*10):
+def lr_exp_decay(epoch, initial_learning_rate=0.005*10):
 	'''
 	Learning rate scheduling with exponential decay
 	'''
@@ -66,7 +64,7 @@ def load_config(config_file):
 	return model_config, dataloader_config, dataloader_test_config, scale_name
 
 
-def generate_trained_model(datagen,model_config,val_datagen=None,seed=None,save_dir=None,verbose=False):
+def generate_trained_model(datagen,model_config,val_datagen=None,save_dir=None,verbose=True):
 	'''
 	Generate a trained classification model given a training set and
 	configuration
@@ -81,8 +79,6 @@ def generate_trained_model(datagen,model_config,val_datagen=None,seed=None,save_
 		val_datagen: ValidationDataGenerator
 			data generator for validation set
 			
-		seed: int
-			random seed
 
 		save_dir: string
 			directory where to save model weights
@@ -96,16 +92,16 @@ def generate_trained_model(datagen,model_config,val_datagen=None,seed=None,save_
 	foca = FocA(**model_config)
 	early_stop = foca.early_stop
 	if val_datagen is not None:
-		foca.model.fit(datagen,epochs=30,batch_size=1,verbose=True,validation_data=val_datagen,
+		foca.model.fit(datagen,epochs=2,batch_size=1,verbose=True,validation_data=val_datagen,
 					callbacks=[LearningRateScheduler(lr_time_decay),early_stop],shuffle=False)
 	else:
 		foca.model.fit(datagen,epochs=12,batch_size=1,verbose=True,shuffle=False)
 	
 	if save_dir is not None:
-		model_path = os.path.join(WEIGHT_DIR,save_dir)
+		model_path = save_dir#os.path.join(WEIGHT_DIR,save_dir)
 		if verbose:
 			print("Model saved to %s"%model_path)
-		foca.model.save(model_path)
+		foca.model.save(model_path+'/')
 	return foca
 
 # for i in range(len(datagen)):

@@ -8,13 +8,10 @@ import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).parents[1]))
-import gc
-import pickle
 import re
 
 import cv2 as cv
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 import yaml
 from tensorflow.keras.utils import Sequence

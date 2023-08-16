@@ -1,0 +1,21 @@
+model:
+  input_shape: !!python/tuple [100,100,1]
+  num_classes: 1
+  lrn_rate: 0.000005
+  strides: 2
+  dense_size: 512
+  num_filters: !!python/tuple [32,64]
+  filter_size: !!python/tuple [3,5]
+    
+dataloader:
+  batch_size: 8
+  wells_per_stage: 40
+  patch_size: !!python/tuple [100,100]
+  patches_per_well: 36
+  scale: '6um'
+
+dataloader_test:
+  wells_per_batch: 96
+  patch_size: !!python/tuple [100,100]
+  patches_per_well: 16
+  scale: '6um'

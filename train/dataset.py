@@ -92,11 +92,11 @@ def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_
     total_df = pd.DataFrame(columns=['Location','Filename','Plate','Class'])
 
     # get all files in the class and subclass directories 
-    for i in range(len(class_dirs)):
+    for i,_ in enumerate(class_dirs):
         class_df = pd.DataFrame(columns=total_df.columns)
         if type(class_dirs[i]) is list:
             files = []
-            for j in range(len(class_dirs[i])):
+            for j,_ in enumerate(class_dirs[i]):
                 subclass_dir = class_dirs[i][j]
                 class_path = os.path.join(data_dir,subclass_dir)
                 subclass_files = [os.path.join(class_path,f) for f in os.listdir(class_path) if f.endswith(('.jpg','.png','.tiff'))]
@@ -110,8 +110,8 @@ def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_
         filenames = []
 
         # extract location, plate, and filename from absolute paths
-        for j in range(len(files)):
-            file_list = files[j].split('/')
+        for j in files:
+            file_list = j.split('/')
             filename = file_list[-1]
             location = "/".join(file_list[:-1])
             filenames.append(filename)
@@ -151,8 +151,8 @@ def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_
         kf.get_n_splits(class_df)
 
         unique_locations = class_df['Location'].unique()
-        for j in range(len(unique_locations)):
-            subclass_df = class_df[class_df['Location']==unique_locations[j]]
+        for j in unique_locations:
+            subclass_df = class_df[class_df['Location']==j]
 
         
             for k, (train_index,test_index) in enumerate(kf.split(subclass_df)):
@@ -162,7 +162,8 @@ def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_
                 test_df = subclass_df.iloc[test_index]
                 train_fold_dfs[k] = pd.concat([train_fold_dfs[k],train_df],ignore_index=True)
                 test_fold_dfs[k] = pd.concat([test_fold_dfs[k],test_df],ignore_index=True)
-    
+    if not os.path.exists(DATASET_CSV_DIR):
+        os.makedirs(DATASET_CSV_DIR)
     for i in range(folds):
         train_fold_dfs[i].to_csv(os.path.join(DATASET_CSV_DIR,csv_prefixes[0]+'_f%d.csv'%i))
         test_fold_dfs[i].to_csv(os.path.join(DATASET_CSV_DIR,csv_prefixes[1]+'_f%d.csv'%i))

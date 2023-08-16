@@ -70,7 +70,7 @@ WEIGHT_DIR = "input/model_weights"
 EXPERIMENT_DIR = "assets/experiment_results"
 
 # Path to directory with YAML config files for dataloaders and model parameters
-CONFIG_DIR = "input/experiment_configs" ##To JEFF: where is this file?
+CONFIG_DIR = "input/" 
 
 # Path to directory where plots will be saved
 PLOT_DIR = "assets/model_plots"
