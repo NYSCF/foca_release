@@ -55,7 +55,7 @@ def calculate_global_intensity_range(csv_names=('train.csv','test.csv'),scale='1
     return (global_min,global_max),(global_min_file,global_max_file)
 
 
-def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_prefixes=('train','test'),generic=False):
+def create_datasets(data_dir,class_dirs,folds=5,max_class_size=50,csv_prefixes=('train','test'),generic=False):
     '''
     Automatically generates and saves CSVs for with training and testing sets where plate variety is maximized
 
@@ -67,8 +67,9 @@ def create_datasets(data_dir,class_dirs,folds=5,split=0.3,max_class_size=50,csv_
             list of class directories where images in each class can be found
             if an element of the list is a list, this will include images from both directories
         
-        split: float
-            fraction of images to use in testing set
+        folds: int
+            number of cross-validation folds to generate
+            train/test ratio is based on number of folds (e.g., 5 folds -> 80:20 train/test ratio)
         
         max_class_size: int
             maximum number of samples used from any class
