@@ -92,10 +92,10 @@ def generate_trained_model(datagen,model_config,val_datagen=None,save_dir=None,v
 	foca = FocA(**model_config)
 	early_stop = foca.early_stop
 	if val_datagen is not None:
-		foca.model.fit(datagen,epochs=2,batch_size=1,verbose=True,validation_data=val_datagen,
+		foca.model.fit(datagen,epochs=30,batch_size=1,verbose=True,validation_data=val_datagen,
 					callbacks=[LearningRateScheduler(lr_time_decay),early_stop],shuffle=False)
 	else:
-		foca.model.fit(datagen,epochs=12,batch_size=1,verbose=True,shuffle=False)
+		foca.model.fit(datagen,epochs=30,batch_size=1,verbose=True,shuffle=False)
 	
 	if save_dir is not None:
 		model_path = save_dir#os.path.join(WEIGHT_DIR,save_dir)
